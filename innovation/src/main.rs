@@ -1,13 +1,19 @@
+fn fibonacci(fib_len: usize) -> Vec<i32> {
+    assert!(fib_len >= 2, "N must be at least 2");
 
-enum Charlie {
-    Yeah = 82
+    let mut sequence = vec![0, 1];
+
+    for i in 2..fib_len {
+        sequence.push(sequence[i - 1] + sequence[i - 2]);
+    }
+
+    return sequence;
 }
 
+fn main() { 
+    let fib_len: i32 = 1000;
+    let fib_sequence: Vec<i32> = fibonacci(fib_len as usize);
 
-fn main() {
-    let _arr: [i32; 5] = [1, 4, 2, 21, -5];
 
-    const YEAH_TIME: i32 = Charlie::Yeah as i32;
-
-    println!("{:?}", YEAH_TIME);
+    println!("{:?}", fib_sequence);
 }
