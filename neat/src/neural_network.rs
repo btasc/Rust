@@ -3,6 +3,9 @@ use std::collections::HashMap;
 use crate::innovation::InnovationTable;
 use crate::innovation::Innovation;
 
+const INPUT_NEURONS: [i32; 3] = [0, 1, 2];
+const OUTPUT_NEURONS: [i32; 1] = [3];
+
 #[derive(Debug)]
 #[derive(Clone)]
 struct Neuron {
@@ -129,6 +132,8 @@ impl NeuralNetwork {
             self.neurons.get_mut(&to).unwrap().add_to(connector.id);
         }
 
-        println!("{:#?}", &self.connectors);
+        let layers: Vec<Vec<Vec<i32>>> = Vec::new();
+
+
     }
 }
