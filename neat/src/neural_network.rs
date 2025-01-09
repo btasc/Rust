@@ -1,5 +1,8 @@
 use std::collections::HashMap;
 
+use crate::innovation::InnovationTable;
+use crate::innovation::Innovation;
+
 struct Neuron {
     value: i32,
     id: i32,
@@ -22,13 +25,7 @@ struct Connector {
     from: i32,
     to: i32,
     id: i32,
-    weight: i32,
-}
-
-pub struct Genome {
-    innovations: Vec<i32>,
-    weights: Vec<f64>,
-    statuses: Vec<u8>,
+    weight: f64,
 }
 
 pub struct NeuralNetwork {
@@ -37,11 +34,32 @@ pub struct NeuralNetwork {
     neurons: Vec<Neuron>,
     connectors: Vec<Connector>,
     con_search: HashMap<(i32, i32), Connector>,
-    genome: Genome,
+    genome: (Vec<i32>, Vec<f64>, Vec<bool>),
+}
+
+fn check_genome(genome: &(Vec<i32>, Vec<f64>, Vec<bool>)) {
+    let innovations_len = genome.0.len();
+    let weights_len = genome.1.len();
+    let statuses_len = genome.2.len();
+
+    if innovations_len != weights_len || innovations_len != statuses_len || weights_len != statuses_len {
+        panic!("Genome is not valid");
+    }
 }
 
 impl NeuralNetwork {
-    fn add_connector(&mut self, from: i32, to: i32, weight: i32, id: i32) {
+    pub fn new() -> NeuralNetwork {
+        NeuralNetwork {
+            layers: vec![],
+            order: vec![],
+            neurons: vec![],
+            connectors: vec![],
+            con_search: HashMap::new(),
+            genome: (vec![], vec![], vec![]),
+        }
+    }
+
+    fn add_connector(&mut self, from: i32, to: i32, weight: f64, id: i32) {
         let new_connector: Connector = Connector {
             from: from,
             to: to,
@@ -64,7 +82,20 @@ impl NeuralNetwork {
         self.neurons.push(new_neuron);
     }
 
-    fn init(&mut self, genome: Genome) {
-        
+    pub fn init(&mut self, genome: (Vec<i32>, Vec<f64>, Vec<bool>), innovation_table: InnovationTable) {
+        check_genome(&genome);
+        self.genome = genome;
+
+        for i in 0..self.genome.0.len() {
+            let innovation = innovation_table.get(self.genome.0[i]);
+
+            if innovation.r#type == "Connector" {
+                
+            } else if innovation.r#type == "Neuron" {
+                continue;
+            } else {
+                panic!("Innovation type is not neuron or connector")
+            }
+        }
     }
 }
