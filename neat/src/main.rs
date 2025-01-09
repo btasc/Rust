@@ -11,9 +11,9 @@ fn main() {
     innovation_table.add_connector(1, 2);
 
     let genome = (
-        vec![],
-        vec![],
-        vec![],
+        vec![0],
+        vec![1 as f64],
+        vec![true],
     );
 
     let mut network = NeuralNetwork::new();

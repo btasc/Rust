@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use crate::innovation::InnovationTable;
 use crate::innovation::Innovation;
 
+#[derive(Clone)]
 struct Neuron {
     value: i32,
     id: i32,
@@ -88,13 +89,37 @@ impl NeuralNetwork {
 
         for i in 0..self.genome.0.len() {
             let innovation = innovation_table.get(self.genome.0[i]);
+            let mut neurons: Vec<i32> = vec![]; 
 
             if innovation.r#type == "Connector" {
-                
+                self.add_connector(
+                    innovation.from,
+                    innovation.to,
+                    self.genome.1[i],
+                    innovation.id
+                );
+
+                for i in 0..neurons.len() {
+                    if neurons[i] != innovation.from {
+                        neurons.push(innovation.from);
+                    }
+
+                    if neurons[i] != innovation.to {
+                        neurons.push(innovation.to);
+                    }
+                }
             } else if innovation.r#type == "Neuron" {
                 continue;
             } else {
                 panic!("Innovation type is not neuron or connector")
+            }
+
+            for id in neurons.iter() {
+                self.add_neuron(*id);
+            }
+
+            for connector in self.connectors.iter() {
+                
             }
         }
     }
