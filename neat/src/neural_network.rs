@@ -128,8 +128,6 @@ impl NeuralNetwork {
             let from = connector.from;
             let to = connector.to;
 
-            println!("{} -> {}", from, to);
-
             self.neurons.get_mut(&from).unwrap().add_from(connector.id);
             self.neurons.get_mut(&to).unwrap().add_to(connector.id);
         }
@@ -149,6 +147,11 @@ impl NeuralNetwork {
             }
         }
 
-        println!("{:?}", extras);
-    }
-}
+        let mut used_connectors: Vec<i32> = Vec::new();
+
+        for i in 0..self.genome.0.len() + 1 { // Should be while currentnl > 0 but yknow
+            
+        }
+
+    } // End of init
+} // End of impl NN

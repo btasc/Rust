@@ -19,8 +19,8 @@ fn main() {
 
     let genome = (
         vec![0, 1, 2, 3, 4, 5, 6],
-        vec![1.0, 1.0, 1.0, 1.0],
-        vec![true, true, true, true ],
+        vec![1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+        vec![true, true, true, true, true, true, true],
     );
 
     let mut network = NeuralNetwork::new();
