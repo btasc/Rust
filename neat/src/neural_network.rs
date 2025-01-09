@@ -128,12 +128,27 @@ impl NeuralNetwork {
             let from = connector.from;
             let to = connector.to;
 
+            println!("{} -> {}", from, to);
+
             self.neurons.get_mut(&from).unwrap().add_from(connector.id);
             self.neurons.get_mut(&to).unwrap().add_to(connector.id);
         }
 
         let layers: Vec<Vec<Vec<i32>>> = Vec::new();
 
+        let mut current_neuron_layer: Vec<i32> = Vec::from(INPUT_NEURONS);
+        let mut extras: Vec<i32> = Vec::new();
 
+        for (neuron_id, neuron) in self.neurons.iter() {
+            if INPUT_NEURONS.contains(neuron_id) {
+                continue;
+            }
+
+            if neuron.tos.len() == 0 {
+                extras.push(*neuron_id);
+            }
+        }
+
+        println!("{:?}", extras);
     }
 }
