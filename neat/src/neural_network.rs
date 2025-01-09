@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use crate::innovation::InnovationTable;
 use crate::innovation::Innovation;
 
+#[derive(Debug)]
 #[derive(Clone)]
 struct Neuron {
     value: i32,
@@ -21,6 +22,7 @@ impl Neuron {
     }
 }
 
+#[derive(Debug)]
 #[derive(Clone)]
 struct Connector {
     from: i32,
@@ -32,7 +34,7 @@ struct Connector {
 pub struct NeuralNetwork {
     layers: Vec<Vec<i32>>,
     order: Vec<Vec<i32>>,
-    neurons: Vec<Neuron>,
+    neurons: HashMap<i32, Neuron>,
     connectors: Vec<Connector>,
     con_search: HashMap<(i32, i32), Connector>,
     genome: (Vec<i32>, Vec<f64>, Vec<bool>),
@@ -53,7 +55,7 @@ impl NeuralNetwork {
         NeuralNetwork {
             layers: vec![],
             order: vec![],
-            neurons: vec![],
+            neurons: HashMap::new(),
             connectors: vec![],
             con_search: HashMap::new(),
             genome: (vec![], vec![], vec![]),
@@ -80,47 +82,53 @@ impl NeuralNetwork {
             tos: vec![],
         };
 
-        self.neurons.push(new_neuron);
+        self.neurons.insert(id, new_neuron);
     }
 
     pub fn init(&mut self, genome: (Vec<i32>, Vec<f64>, Vec<bool>), innovation_table: InnovationTable) {
         check_genome(&genome);
         self.genome = genome;
+        let mut neurons: Vec<i32> = vec![]; 
 
         for i in 0..self.genome.0.len() {
             let innovation = innovation_table.get(self.genome.0[i]);
-            let mut neurons: Vec<i32> = vec![]; 
 
             if innovation.r#type == "Connector" {
                 self.add_connector(
                     innovation.from,
                     innovation.to,
                     self.genome.1[i],
-                    innovation.id
+                    i as i32,
                 );
 
-                for i in 0..neurons.len() {
-                    if neurons[i] != innovation.from {
-                        neurons.push(innovation.from);
-                    }
-
-                    if neurons[i] != innovation.to {
-                        neurons.push(innovation.to);
-                    }
+                if !neurons.contains(&innovation.from) {
+                    neurons.push(innovation.from);
                 }
+
+                if !neurons.contains(&innovation.to) {
+                    neurons.push(innovation.to);
+                }
+
             } else if innovation.r#type == "Neuron" {
                 continue;
             } else {
                 panic!("Innovation type is not neuron or connector")
             }
 
-            for id in neurons.iter() {
-                self.add_neuron(*id);
-            }
-
-            for connector in self.connectors.iter() {
-                
-            }
         }
+
+        for id in neurons.iter() {
+            self.add_neuron(*id);
+        }
+
+        for connector in self.connectors.iter() {
+            let from = connector.from;
+            let to = connector.to;
+
+            self.neurons.get_mut(&from).unwrap().add_from(connector.id);
+            self.neurons.get_mut(&to).unwrap().add_to(connector.id);
+        }
+
+        println!("{:#?}", &self.connectors);
     }
 }
