@@ -1,5 +1,6 @@
 mod neural_network;
 mod innovation;
+mod operations;
 
 use crate::innovation::InnovationTable;
 use crate::neural_network::NeuralNetwork;
@@ -8,7 +9,7 @@ fn main() {
     //let mut _map = HashMap::new();
     let mut innovation_table = InnovationTable::new();
 
-    innovation_table.add_connector(1, 2); // 0 <-
+    innovation_table.add_connector(1, 5); // 0 <-
     innovation_table.add_connector(1, 3); // 1 <-
     innovation_table.add_connector(1, 4); // 2 <-
     innovation_table.add_connector(2, 4); // 3 <-
@@ -23,6 +24,10 @@ fn main() {
         vec![true, true, true, true, true, true, true],
     );
 
-    let mut network = NeuralNetwork::new();
-    network.init(genome, innovation_table);
+    for i in 0..10000 {
+        let mut network = NeuralNetwork::new();
+        network.init(genome.clone(), innovation_table.clone());
+
+        println!("{:?}", network.order);
+    }
 }  

@@ -9,6 +9,7 @@ pub struct Innovation<'a> {
     pub neuron_id: Option<i32>,
 }
 
+#[derive(Clone)]
 pub struct InnovationTable<'a> {
     table: Vec<Innovation<'a>>,
     innov_search: HashMap<(i32, i32, &'a str), Innovation<'a>>,
