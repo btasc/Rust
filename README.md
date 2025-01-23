@@ -1,5 +1,5 @@
-**Some Rust Projects** <br>
-***(For when I learned Rust)***
+#Some Rust Projects <br>
+######***(For when I learned Rust)***
 
 <br>
 Log-
