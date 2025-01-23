@@ -1,6 +1,6 @@
-**Some Rust Projects**\n
+**Some Rust Projects** <br>
 ***(For when I learned Rust)***
 
-\n
+<br>
 Log-
 C's game of life - *22/1/25*
