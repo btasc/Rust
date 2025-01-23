@@ -107,23 +107,25 @@ fn main() {
 
     // Glider Coordinates
     let c1 = Coordinate { x: 1, y: 1 };
-    let c2 = Coordinate { x: 2, y: 2 };
-    let c3 = Coordinate { x: 2, y: 3 };
-    let c4 = Coordinate { x: 1, y: 3 };
-    let c5 = Coordinate { x: 0, y: 3 };
+    let c2 = Coordinate { x: 1, y: 2 };
+    let c3 = Coordinate { x: 2, y: 1 };
+    let c4 = Coordinate { x: 0, y: 2 };
+    let c5 = Coordinate { x: 1, y: 3 };
+    //let c6 = Coordinate { x: 0, y: 1 };
     board[c1.to_index()] = true;
     board[c2.to_index()] = true;
     board[c3.to_index()] = true;
     board[c4.to_index()] = true;
     board[c5.to_index()] = true;
+    //board[c6.to_index()] = true;
 
-    let pause = Duration::from_millis(10);
+    let pause = Duration::from_millis(200);
 
     
 
     for i in 0..10000 {
-        //thread::sleep(pause);
-        //render_board(&board);
+        thread::sleep(pause);
+        render_board(&board);
         
         let mut death_marked: Vec<usize> = Vec::new();
         let mut life_marked: Vec<usize> = Vec::new();
