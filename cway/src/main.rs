@@ -86,10 +86,6 @@ fn render_board(board: &[bool; PIXELS]) {
     print!("{}", print_board);
 }
 
-fn board_wrap(index: usize) -> usize {
-    return index % PIXELS;
-}
-
 fn get_adjacents(index: usize) -> [usize; 8] {
     let mut adjacents = [0; 8];
     let index_coordinate = Coordinate::to_coordinate(index);
@@ -123,7 +119,7 @@ fn main() {
 
     
 
-    for i in 0..10000 {
+    for _ in 0..10000 {
         thread::sleep(pause);
         render_board(&board);
         
