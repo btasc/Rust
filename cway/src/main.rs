@@ -116,10 +116,9 @@ fn main() {
     //board[c6.to_index()] = true;
 
     let pause = Duration::from_millis(200);
-
     
 
-    for _ in 0..10000 {
+    for _ in 0..1000 {
         thread::sleep(pause);
         render_board(&board);
         
