@@ -1,7 +1,4 @@
 # Target
-**/**/target/
-
+/target/
 Cargo.lock
-
-# IDE
 .idea
