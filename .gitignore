@@ -1,6 +1,5 @@
 # Target
-Libraries/**/target/
-Projects/**/target/
+**/**/target/
 
 Cargo.lock
 
