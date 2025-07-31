@@ -3,3 +3,6 @@ Libraries/**/target/
 Projects/**/target/
 
 Cargo.lock
+
+# IDE
+.idea
