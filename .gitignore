@@ -1,4 +1,6 @@
 # Target
 /target/
 Cargo.lock
-/.idea/
+.idea
+
+/Sprites
