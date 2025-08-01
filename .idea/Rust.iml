@@ -14,8 +14,10 @@
       <excludeFolder url="file://$MODULE_DIR$/Projects/AI-Duel/target" />
       <excludeFolder url="file://$MODULE_DIR$/Simple Projects/cway/target" />
       <excludeFolder url="file://$MODULE_DIR$/Simple Projects/todo_list/target" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dictionaries" />
       <excludeFolder url="file://$MODULE_DIR$/Libraries/visual_lib/target" />
       <excludeFolder url="file://$MODULE_DIR$/Libraries/visuals_core/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Projects/AI-Duel/assets/components/sprites" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
