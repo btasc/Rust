@@ -1,9 +1,4 @@
-# Target
 /target/
-/Aseprites/
-Cargo.lock
-
-.idea
-.idea/
-
-Sprites
+**/target/
+**/.idea/
+/Cargo.lock
