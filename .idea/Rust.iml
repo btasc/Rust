@@ -7,11 +7,15 @@
       <sourceFolder url="file://$MODULE_DIR$/Projects/AI-Duel/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Simple Projects/cway/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Simple Projects/todo_list/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Libraries/visual_lib/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Libraries/visuals_core/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Libraries/neat_core/target" />
       <excludeFolder url="file://$MODULE_DIR$/Libraries/visual_canvas/target" />
       <excludeFolder url="file://$MODULE_DIR$/Projects/AI-Duel/target" />
       <excludeFolder url="file://$MODULE_DIR$/Simple Projects/cway/target" />
       <excludeFolder url="file://$MODULE_DIR$/Simple Projects/todo_list/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Libraries/visual_lib/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Libraries/visuals_core/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
