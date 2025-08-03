@@ -4,3 +4,4 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+visuals_core_2 = { path = "../../Libraries/visuals_core_2" }
