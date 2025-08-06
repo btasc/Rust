@@ -33,8 +33,8 @@ impl Display {
     }
 
     pub fn set_pixel(&mut self, x: usize, y: usize, color: u32) {
-        assert!(x < ScreenSize::W180.width());
-        assert!(y < ScreenSize::W180.height());
+        assert!(x <= ScreenSize::W180.width(), "Expected x to be smaller than ScreenSize w180.width, x was equal to: {}", x);
+        assert!(y <= ScreenSize::W180.height(), "Expected y to be smaller than ScreenSize w180.height, y was equal to: {}", y);
 
         let scale = self.screen_size.get_scale();
 
@@ -56,10 +56,6 @@ impl Display {
     }
 
     pub fn render_asset(&mut self, asset: &Asset, x: usize, y: usize) {
-
-        assert!(ScreenSize::W180.width() >= x + asset.width() as usize);
-        assert!(ScreenSize::W180.height() >= y + asset.height() as usize);
-
         let buffer = asset.get_buffer();
 
         for i in 0..buffer.len() {

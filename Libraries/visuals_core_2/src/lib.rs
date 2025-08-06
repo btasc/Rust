@@ -7,7 +7,7 @@ use std::time::Duration;
 use std::thread;
 
 use crate::asset::Asset;
-use crate::component_bundle::ComponentBundle;
+use crate::component_bundle::{Component, ComponentBundle};
 use crate::display::{Display, ScreenSize};
 
 pub mod prelude {
@@ -38,10 +38,15 @@ impl Page {
 
     pub fn render(&mut self) {
         self.components.run_logics(&self.display);
-        let assets = self.components.get_assets();
+        let components = self.components.get_components();
 
-        for asset in assets {
-            self.display.render_asset(asset, 20, 20);
+        for component in components {
+            let asset = component.get_asset();
+            
+            let x = component.x();
+            let y = component.y();
+
+            self.display.render_asset(asset, x, y);
         }
 
         self.display.update();
@@ -52,4 +57,5 @@ impl Page {
 
 pub enum Layout {
     Button(Asset, Asset, usize, usize), // On asset, Off asset, x, y
+    Image(Asset, usize, usize),
 }

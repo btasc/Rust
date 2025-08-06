@@ -8,8 +8,8 @@ pub struct Asset {
 }
 
 impl Asset { // Duplicate code is in visual_core_proto
-    pub fn load(path: &str) -> Asset {
-        let img = image::open(&Path::new(path))
+    pub fn load<P: AsRef<Path>>(path: P) -> Asset {
+        let img = image::open(path)
             .expect("Failed to open image")
             .to_rgba8();
 

@@ -32,8 +32,23 @@ impl Component for Button {
             self.flip_buffer = false;
         }
     }
+    
+    fn x(&self) -> usize { self.x }
+    fn y(&self) -> usize { self.y }
+}
 
-    fn from_layout(layout: Layout) -> ComponentType {
+impl Button {
+    fn check_state(&self, display: &Display) -> bool  {
+        let mouse_state = display.get_mouse_state();
+
+        if mouse_state {
+            display.contains_point(self.x, self.y, self.width, self.height)
+        } else {
+            false
+        }
+    }
+
+    pub fn from_layout(layout: Layout) -> ComponentType {
         match layout {
             Layout::Button(on_asset, off_asset, x, y) => {
                 assert_eq!(on_asset.width(), off_asset.width());
@@ -47,18 +62,6 @@ impl Component for Button {
                 ComponentType::Button(button)
             },
             _ => unreachable!()
-        }
-    }
-}
-
-impl Button {
-    fn check_state(&self, display: &Display) -> bool  {
-        let mouse_state = display.get_mouse_state();
-
-        if mouse_state {
-            display.contains_point(self.x, self.y, self.width, self.height)
-        } else {
-            false
         }
     }
 }
