@@ -57,5 +57,5 @@ impl Page {
 
 pub enum Layout {
     Button(Asset, Asset, usize, usize), // On asset, Off asset, x, y
-    Image(Asset, usize, usize),
+    Image(Asset, usize, usize), // Image, x, y
 }

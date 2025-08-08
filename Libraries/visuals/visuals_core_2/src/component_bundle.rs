@@ -5,7 +5,7 @@ use crate::display::Display;
 use crate::Layout;
 
 use crate::component_lib::{
-    button::Button,
+    stateful::Button,
     image::Image,
 };
 
